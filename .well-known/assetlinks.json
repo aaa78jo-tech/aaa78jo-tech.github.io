@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.astrolab.quiz",
+    "sha256_cert_fingerprints": ["E5:13:5E:2F:14:07:8C:D5:46:83:66:40:78:E9:5A:F1:D0:92:00:06:82:13:F9:6B:E4:1A:18:77:74:86:16:C6"]
+  }
+}]
