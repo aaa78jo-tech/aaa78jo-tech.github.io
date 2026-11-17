@@ -1,8 +1,8 @@
 {
  "app": "com.hydro.calc",
- "v": 1072,
+ "v": 1073,
  "minNative": 107,
- "time": "2026-11-17 18:33",
+ "time": "2026-11-17 18:45",
  "note": "",
  "files": {
   "mod_farm.js": {
