@@ -1,10 +1,18 @@
 {
  "app": "com.hydro.calc",
- "v": 1073,
+ "v": 1074,
  "minNative": 107,
- "time": "2026-11-17 18:45",
+ "time": "2026-11-18 12:12",
  "note": "",
  "files": {
+  "app.html": {
+   "h": "908905a2a4b7927c1ec44040f0a897540f0deab3b1b5c33752d8097e30612b64",
+   "s": 719152
+  },
+  "ext107.js": {
+   "h": "64ec9acb86cfecbaf366c37ca7c52f3aec9385694260f3e6417162aee9eff9df",
+   "s": 63999
+  },
   "mod_farm.js": {
    "h": "eb48c543fe639fc7e1e59d0f66e2a10c34c83eb65c98035f851512ba76856a7f",
    "s": 122110
