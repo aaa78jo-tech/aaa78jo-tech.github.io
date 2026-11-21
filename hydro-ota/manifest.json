@@ -1,13 +1,13 @@
 {
  "app": "com.hydro.calc",
- "v": 1076,
+ "v": 1077,
  "minNative": 107,
- "time": "2026-11-20 17:53",
+ "time": "2026-11-21 15:17",
  "note": "",
  "files": {
   "app.html": {
-   "h": "d66866f19004987d950abcf4cece47512b56636ab3e91b0a8b64bbc4df022e6b",
-   "s": 722953
+   "h": "95e3f91d2f28bddbd3f418e05414e477920a9b6ab7c36a74c6b095db95d9bdcd",
+   "s": 723405
   },
   "ext107.js": {
    "h": "64ec9acb86cfecbaf366c37ca7c52f3aec9385694260f3e6417162aee9eff9df",
@@ -16,6 +16,10 @@
   "mod_farm.js": {
    "h": "eb48c543fe639fc7e1e59d0f66e2a10c34c83eb65c98035f851512ba76856a7f",
    "s": 122110
+  },
+  "mod_stock.js": {
+   "h": "2ad1b08dd576cda73ea76171a3c56a0f8576a32fb004330ebc2fd2323d81b6df",
+   "s": 166541
   },
   "mod_tools.js": {
    "h": "ae96c240b64e70077f29cd8b79dd41747acc2362cc8687a023ad174606ae884c",
