@@ -1217,6 +1217,7 @@ function go(kind){
  if(kind==="scanlbl"){nav("add");setTimeout(function(){try{window.__scanLabelGo&&window.__scanLabelGo();}catch(_){}},150);return;}
  if(kind==="guide"){renderGuide();return;}
  if(kind==="aqua"){ov.classList.remove("on");setTimeout(function(){try{window.__openAqua&&window.__openAqua();}catch(_){}},60);return;}
+ if(kind==="stock"){ov.classList.remove("on");setTimeout(function(){try{window.__openStock&&window.__openStock();}catch(_){}},60);return;}
  if(kind==="care"){ov.classList.remove("on");setTimeout(function(){try{window.__openCare&&window.__openCare();}catch(_){}},60);return;}
  if(kind==="plantid"){ov.classList.remove("on");setTimeout(function(){try{window.__openPlantId&&window.__openPlantId();}catch(_){}},60);return;}
  if(kind==="phlog"||kind==="wx"){ov.classList.remove("on");setTimeout(function(){try{var f=kind==="wx"?window.__openWeather:window.__openPhLog;f&&f();}catch(_){}},60);return;}
@@ -1341,7 +1342,7 @@ function build(){
   return t;
  }
  /* v8.9: "what do you grow?" card -> the matching tools move to the front of the grid (stored in hydro_interest) */
- var INT_K="hydro_interest",INT_ORDER={hydro:["mix","aqua","phlog","acid","vpd","gh","pp","pd","ask","crops"],soil:["soil","care","gh","pp","pd","ask","plantid","season","wx","risk","agro"],mush:["mush","ask","cal","ledger"]};
+ var INT_K="hydro_interest",INT_ORDER={hydro:["mix","aqua","phlog","acid","vpd","gh","pp","pd","ask","crops"],soil:["soil","care","stock","gh","pp","pd","ask","plantid","season","wx","risk","agro"],mush:["mush","ask","cal","ledger"]};
  var IQ={t:{ar:"ماذا تزرع؟ نرتّب لك الأدوات",en:"What do you grow? We'll put your tools first",fr:"Que cultivez-vous ? Vos outils en premier",es:"¿Qué cultivas? Pondremos tus herramientas primero",zh:"你种什么？我们把常用工具放在前面",hi:"आप क्या उगाते हैं? आपके टूल पहले दिखाएँगे",pt:"O que você cultiva? Colocamos suas ferramentas primeiro",nl:"Wat kweek je? Jouw tools komen vooraan"},
   s:{ar:"يمكنك تغيير الاختيار لاحقاً من أسفل الأدوات.",en:"You can change this later below the tools.",fr:"Modifiable plus tard sous les outils.",es:"Puedes cambiarlo luego debajo de las herramientas.",zh:"之后可在工具下方更改。",hi:"बाद में टूल के नीचे से बदल सकते हैं।",pt:"Você pode mudar depois, abaixo das ferramentas.",nl:"Later te wijzigen onder de tools."},
   o:[["hydro","💧",{ar:"مائية",en:"Hydroponics",fr:"Hydroponie",es:"Hidroponía",zh:"水培",hi:"हाइड्रोपोनिक्स",pt:"Hidroponia",nl:"Hydrocultuur"}],["soil","🪴",{ar:"تربة وأصص",en:"Soil & pots",fr:"Sol & pots",es:"Suelo y macetas",zh:"土壤与盆栽",hi:"मिट्टी व गमले",pt:"Solo e vasos",nl:"Grond & potten"}],["mush","🍄",{ar:"فطر",en:"Mushrooms",fr:"Champignons",es:"Setas",zh:"蘑菇",hi:"मशरूम",pt:"Cogumelos",nl:"Paddenstoelen"}],["all","✨",{ar:"الكل",en:"All",fr:"Tout",es:"Todo",zh:"全部",hi:"सब",pt:"Tudo",nl:"Alles"}]],
@@ -1380,6 +1381,7 @@ function build(){
   grid.appendChild(tile("🧪","#2FA25E",T(H.nut),"mix"));
   grid.appendChild(tile("🎓","#1F7A47",T({ar:"مسار التعلّم",en:"Learning path",fr:"Parcours d'apprentissage",es:"Ruta de aprendizaje",zh:"学习路径",hi:"सीखने का रास्ता",pt:"Trilha de aprendizado",nl:"Leerpad"}),"learn"));
   grid.appendChild(tile("🐟","#0EA5A5",T(H.aqua),"aqua"));
+  grid.appendChild(tile("🐄","#B45309",T({ar:"الثروة الحيوانية",en:"Livestock",fr:"Élevage",es:"Ganadería",zh:"畜禽养殖",hi:"पशुपालन",pt:"Pecuária",nl:"Veehouderij"}),"stock"));
   grid.appendChild(tile("🩺","#E1544E",T(H.pd),"pd",1));
   grid.appendChild(tile("🤝","#0E7490",T(window.__mktSoon&&window.__mktSoon()?{ar:"سوق المزارعين · قريباً",en:"Farmers market · soon",fr:"Marché agricole · bientôt",es:"Mercado agrícola · pronto",zh:"农户市场 · 即将上线",hi:"किसान बाज़ार · जल्द",pt:"Mercado agrícola · em breve",nl:"Boerenmarkt · binnenkort"}:{ar:"سوق المزارعين",en:"Farmers market",fr:"Marché agricole",es:"Mercado agrícola",zh:"农户市场",hi:"किसान बाज़ार",pt:"Mercado agrícola",nl:"Boerenmarkt"}),"market"));
   grid.appendChild(tile("🧴","#9333EA",T(window.__pestTile?window.__pestTile():{ar:"مبيداتي",en:"My pesticides",fr:"Mes pesticides",es:"Mis plaguicidas",zh:"我的农药",hi:"मेरे कीटनाशक",pt:"Meus defensivos",nl:"Mijn middelen"}),"pest"));
@@ -1428,7 +1430,7 @@ function build(){
  /* Overlay stacking manager. Module overlays share static z-indexes, so a screen opened later (native callbacks such as
     __openWeather/__openSeason, deep links, Home buttons inside modules) could render UNDER the current one. Any overlay that
     gains .on is raised above every other open overlay; __goHome hides them all. Range 99992..99999 stays below dialogs/toasts. */
- var OVQ=".dzov,.exov,.balov,.aqov,.careov,.libov,.seaov,.toolov,.dataov,.advov,.farmov,.guideov,.mushov,.ghov,.ppov",OVC=OVQ.replace(/\./g,"").split(","),ZBASE=99992;
+ var OVQ=".dzov,.exov,.balov,.aqov,.careov,.libov,.seaov,.toolov,.dataov,.advov,.farmov,.guideov,.mushov,.ghov,.ppov,.lvov",OVC=OVQ.replace(/\./g,"").split(","),ZBASE=99992;
  function isOv(e){if(!e||e.nodeType!==1)return false;for(var i=0;i<OVC.length;i++){if(e.classList.contains(OVC[i]))return true;}return false;}
  function zOf(e){var z=parseInt(e.style.zIndex||getComputedStyle(e).zIndex,10);return isNaN(z)?0:z;}
  window.__raise=function(e){try{if(!e||!isOv(e))return;var all=document.querySelectorAll(OVQ),o=[];for(var i=0;i<all.length;i++){if(all[i]!==e&&all[i].classList.contains("on"))o.push(all[i]);}
@@ -1446,7 +1448,7 @@ function build(){
   if(window.__x96tourOpen&&window.__x96tourOpen()){window.__lnBack&&window.__lnBack();return "back";}
   if(window.__dlgClose&&window.__dlgClose())return "back";
   var ob=document.querySelector(".onbov.on");if(ob){try{window.__onbBack&&window.__onbBack();}catch(_){}return "back";}
-  var sels=[".dzov",".exov",".balov",".aqov",".careov",".libov",".seaov",".toolov",".dataov",".advov",".farmov",".guideov",".mushov",".ghov",".ppov",".lnov"],open=[];
+  var sels=[".dzov",".exov",".balov",".aqov",".careov",".libov",".seaov",".toolov",".dataov",".advov",".farmov",".guideov",".mushov",".ghov",".ppov",".lnov",".lvov"],open=[];
   sels.forEach(function(q){var all=document.querySelectorAll(q);for(var i=0;i<all.length;i++){if(all[i].classList.contains("on"))open.push(all[i]);}});
   if(open.length){var zi=function(e){var z=parseInt(getComputedStyle(e).zIndex,10);return isNaN(z)?0:z;};var top=open[0];for(var j=1;j<open.length;j++){if(zi(open[j])>=zi(top))top=open[j];}
    var sub=top.classList.contains("exov")?window.__exBack:top.classList.contains("balov")?window.__balBack:top.classList.contains("advov")?window.__advBack:top.classList.contains("guideov")?window.__guideBack:top.classList.contains("mushov")?window.__mushBack:top.classList.contains("ghov")?window.__ghBack:top.classList.contains("ppov")?window.__ppBack:top.classList.contains("lnov")?window.__lnBack:null;if(sub&&sub())return "back";
@@ -1674,7 +1676,7 @@ try{var _nAlert=window.alert;window.alert=function(m){try{dlg({msg:String(m==nul
 /* ---------- lazy module loader (Aquaponics / Plant Care live in separate asset files) ---------- */
 var mods={};
 /* opener each module must install; if it is still our stub after onload, the module failed to initialise */
-var MODFN={guide:"__openGuide",aqua:"__openAqua",care:"__openCare",library:"__openLibrary",season:"__openSeason",tools:"__openPhLog",advisor:"__openAdvisor",farm:"__openFarm",mush:"__openMushroom",gh:"__openGreenhouse",pp:"__openNursery",learn:"__openLearn"};
+var MODFN={guide:"__openGuide",aqua:"__openAqua",stock:"__openStock",care:"__openCare",library:"__openLibrary",season:"__openSeason",tools:"__openPhLog",advisor:"__openAdvisor",farm:"__openFarm",mush:"__openMushroom",gh:"__openGreenhouse",pp:"__openNursery",learn:"__openLearn"};
 function lazy(name,cb){
  if(mods[name]==="ok"){cb();return;}
  if(mods[name]&&mods[name].push){mods[name].push(cb);return;}
@@ -1693,6 +1695,7 @@ function stub(name,fn){
  s.__stub=1;window[fn]=s;
 }
 if(!window.__aquaInit)stub("aqua","__openAqua");
+if(!window.__stockInit)stub("stock","__openStock");
 if(!window.__careInit)stub("care","__openCare");
 if(!window.__libInit)stub("library","__openLibrary");
 if(!window.__seasonInit)stub("season","__openSeason");
