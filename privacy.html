@@ -4,7 +4,7 @@
 <style>body{font-family:system-ui,Tahoma,sans-serif;max-width:760px;margin:auto;padding:24px;line-height:1.6;color:#1c2233}h1{font-size:24px}h2{font-size:18px;margin-top:28px}li{margin:6px 0}.ar{direction:rtl;text-align:right;border-top:1px solid #ddd;margin-top:40px;padding-top:10px}</style></head>
 <body>
 <h1>MediaFinder – Privacy Policy</h1>
-<p>Last updated: November 23, 2026. Developer: JoTech Apps (<a href="mailto:jotechapp@gmail.com">jotechapp@gmail.com</a>).</p>
+<p>Last updated: November 27, 2026. Developer: JoTech Apps (<a href="mailto:jotechapp@gmail.com">jotechapp@gmail.com</a>).</p>
 
 <h2>What the app does</h2>
 <p>MediaFinder searches public photo and video sources (Openverse, Wikimedia Commons, NASA, Internet Archive, Pixabay, Pexels, Unsplash, Dailymotion, YouTube, Brave web search and public Telegram channels), lets you edit photos, and can send a video or photo to your TV through our YanalTV app.</p>
@@ -17,6 +17,8 @@
 <li>Your settings, any API keys you enter, Telegram channel names, favorites and recent searches. Uninstalling the app deletes them.</li>
 <li>Photos you edit are processed on your phone. Photos and videos you pick from your gallery are opened on your phone and are not uploaded anywhere.</li>
 <li>Edited photos you save go to your phone's Pictures/MediaFinder folder; videos you join go to Movies/MediaFinder; downloads go to Downloads/MediaFinder. Joining videos is done entirely on your phone; nothing is uploaded.</li>
+<li><b>Tools done on your phone:</b> background removal (Google ML Kit, which Google Play services provides on your phone), stickers, GIFs, extracting sound (saved to Music/MediaFinder), compressing videos, and adding text or speed to videos. Nothing is uploaded.</li>
+<li><b>Duplicate photos:</b> only the photos you pick are compared, on your phone. A photo is deleted only after you confirm.</li>
 </ul>
 
 <h2>What leaves your device, and why</h2>
@@ -24,6 +26,8 @@
 <li><b>Search words</b> are sent to the sources you enable, under each source's own privacy policy. For Pixabay, Pexels and Unsplash the request goes through our small server (a Cloudflare Worker, <i>mediafinder-api</i>), which adds our access key and keeps the public results for up to 24 hours so repeated searches are faster. It does not store who searched.</li>
 <li><b>Translation:</b> when you search in Arabic, the search words are translated to English through our server (Cloudflare Workers AI) and, if needed, the MyMemory translation service, and translations are kept for up to 30 days. Only the search words are sent.</li>
 <li><b>Search by image:</b> for “similar photos”, a small copy of the photo (512 px) is sent to our server, where an AI model (Cloudflare Workers AI) turns it into a few English keywords. The photo is not stored; only the keywords are kept for up to 30 days. For “exact matches”, the photo is handed to Google Lens (or Yandex, Bing, TinEye for photos from search results) only when you choose it, under that service's privacy policy.</li>
+<li><b>Copy text from a photo:</b> when you use it, the photo (at most 1600 px) is sent to our server, where an AI model (Cloudflare Workers AI) reads the words in it. The photo is not stored; the text read from it is kept for up to 7 days so the same photo is read faster.</li>
+<li><b>Daily wallpaper:</b> if you turn it on, the app asks our server once a day for photos of the topic you chose (from Pixabay) and sets one as your wallpaper. Only the topic word is sent.</li>
 <li><b>Voice search</b> (when you tap the microphone) uses your phone's speech recognition service (usually Google), under that service's privacy policy. We do not receive or store your voice.</li>
 <li><b>Anonymous usage counts:</b> the app sends anonymous event counts (a search was made, a result was opened, a video was played) to our statistics server, with no personal data, device ID or search words, so we can see which features are used.</li>
 <li><b>App updates:</b> the app downloads small updates of its own screens from our update server (Cloudflare).</li>
@@ -33,7 +37,8 @@
 <h2>Permissions</h2>
 <ul>
 <li><b>Internet</b>: to search and show results.</li>
-<li><b>Set wallpaper</b>: only when you choose “Set as wallpaper”.</li>
+<li><b>Set wallpaper</b>: only when you choose “Set as wallpaper” or turn on the daily wallpaper.</li>
+<li><b>Notifications and foreground service</b>: to show progress while a video is being cut or joined after you leave the app.</li>
 <li><b>Microphone/speech</b>: handled by your phone's speech service, only when you tap the microphone.</li>
 </ul>
 
@@ -43,11 +48,11 @@
 
 <div class="ar">
 <h1>سياسة الخصوصية – MediaFinder</h1>
-<p>آخر تحديث: 23 نوفمبر 2026. المطوّر: JoTech Apps ‏(jotechapp@gmail.com).</p>
+<p>آخر تحديث: 27 نوفمبر 2026. المطوّر: JoTech Apps ‏(jotechapp@gmail.com).</p>
 <p>لا توجد حسابات، ولا نجمع اسمك أو بريدك أو رقمك أو جهات اتصالك أو موقعك أو ملفاتك.</p>
-<p><b>على جهازك فقط:</b> الإعدادات ومفاتيح API التي تدخلها وقنوات Telegram والمفضلة وسجل البحث، وتُحذف عند إزالة التطبيق. الصور التي تعدّلها تُعالج على هاتفك، والصور والفيديوهات التي تختارها من معرض الهاتف لا تُرفع إلى أي مكان. الفيديوهات التي تجمعها تُعالج على هاتفك بالكامل ولا تُرفع، وتُحفظ في Movies/MediaFinder. الصور المعدّلة تُحفظ في Pictures/MediaFinder، والتنزيلات في Downloads/MediaFinder.</p>
-<p><b>ما يخرج من جهازك:</b> كلمات البحث تُرسل إلى المصادر التي تفعّلها. لمصادر Pixabay وPexels وUnsplash يمر الطلب عبر خادمنا الصغير (Cloudflare Worker) الذي يضيف مفتاح الوصول ويحتفظ بالنتائج العامة حتى 24 ساعة لتسريع البحث، دون حفظ هوية من بحث. عند البحث بالعربي تُترجم كلمات البحث فقط إلى الإنجليزية عبر خادمنا (Cloudflare Workers AI) أو خدمة MyMemory، وتُحفظ الترجمة حتى 30 يوماً. في «البحث بصورة»: لإيجاد صور مشابهة تُرسل نسخة صغيرة من الصورة إلى خادمنا ليحوّلها الذكاء الاصطناعي إلى كلمات بحث، ولا تُحفظ الصورة بل الكلمات فقط حتى 30 يوماً؛ ولإيجاد صور مطابقة تُسلَّم الصورة إلى Google Lens (أو Yandex أو Bing أو TinEye لصور النتائج) فقط عندما تختار ذلك. البحث بالصوت يتم عبر خدمة التعرّف على الكلام في هاتفك (غالباً Google) ولا نستلم صوتك. يرسل التطبيق أعداداً مجهولة للاستخدام (بحث، فتح نتيجة، تشغيل فيديو) بلا أي بيانات شخصية أو كلمات بحث. يحمّل التطبيق تحديثات صغيرة لشاشاته من خادم التحديث. يعرض التطبيق إعلانات Google AdMob التي قد تجمع معرّف الإعلانات وبيانات الجهاز، ويُطلب موافقتك حيث يلزم، ويمكنك تغييرها من الإعدادات › خيارات الإعلانات.</p>
-<p><b>الأذونات:</b> الإنترنت للبحث، وتعيين الخلفية فقط عند اختيارك ذلك، والميكروفون عبر خدمة الكلام في هاتفك فقط عند الضغط على زر الميكروفون.</p>
+<p><b>على جهازك فقط:</b> الإعدادات ومفاتيح API التي تدخلها وقنوات Telegram والمفضلة وسجل البحث، وتُحذف عند إزالة التطبيق. الصور التي تعدّلها تُعالج على هاتفك، والصور والفيديوهات التي تختارها من معرض الهاتف لا تُرفع إلى أي مكان. الفيديوهات التي تجمعها تُعالج على هاتفك بالكامل ولا تُرفع، وتُحفظ في Movies/MediaFinder. الصور المعدّلة تُحفظ في Pictures/MediaFinder، والتنزيلات في Downloads/MediaFinder. أدوات إزالة الخلفية (Google ML Kit من خدمات Google Play على هاتفك) والملصقات وGIF واستخراج الصوت (يُحفظ في Music/MediaFinder) وضغط الفيديو وإضافة النص والسرعة كلها تعمل على هاتفك ولا يُرفع شيء. أداة الصور المكررة تقارن فقط الصور التي تختارها، على هاتفك، ولا تحذف أي صورة إلا بعد تأكيدك.</p>
+<p><b>ما يخرج من جهازك:</b> كلمات البحث تُرسل إلى المصادر التي تفعّلها. لمصادر Pixabay وPexels وUnsplash يمر الطلب عبر خادمنا الصغير (Cloudflare Worker) الذي يضيف مفتاح الوصول ويحتفظ بالنتائج العامة حتى 24 ساعة لتسريع البحث، دون حفظ هوية من بحث. عند البحث بالعربي تُترجم كلمات البحث فقط إلى الإنجليزية عبر خادمنا (Cloudflare Workers AI) أو خدمة MyMemory، وتُحفظ الترجمة حتى 30 يوماً. في «البحث بصورة»: لإيجاد صور مشابهة تُرسل نسخة صغيرة من الصورة إلى خادمنا ليحوّلها الذكاء الاصطناعي إلى كلمات بحث، ولا تُحفظ الصورة بل الكلمات فقط حتى 30 يوماً؛ ولإيجاد صور مطابقة تُسلَّم الصورة إلى Google Lens (أو Yandex أو Bing أو TinEye لصور النتائج) فقط عندما تختار ذلك. في «نسخ النص من صورة» تُرسل الصورة (حتى 1600 بكسل) إلى خادمنا ليقرأ الذكاء الاصطناعي (Cloudflare Workers AI) الكلام فيها، ولا تُحفظ الصورة، ويُحفظ النص المقروء حتى 7 أيام. في «الخلفية اليومية» إن فعّلتها يطلب التطبيق من خادمنا مرة يومياً صوراً للموضوع الذي اخترته (من Pixabay)، ولا يُرسل إلا كلمة الموضوع. البحث بالصوت يتم عبر خدمة التعرّف على الكلام في هاتفك (غالباً Google) ولا نستلم صوتك. يرسل التطبيق أعداداً مجهولة للاستخدام (بحث، فتح نتيجة، تشغيل فيديو) بلا أي بيانات شخصية أو كلمات بحث. يحمّل التطبيق تحديثات صغيرة لشاشاته من خادم التحديث. يعرض التطبيق إعلانات Google AdMob التي قد تجمع معرّف الإعلانات وبيانات الجهاز، ويُطلب موافقتك حيث يلزم، ويمكنك تغييرها من الإعدادات › خيارات الإعلانات.</p>
+<p><b>الأذونات:</b> الإنترنت للبحث، وتعيين الخلفية فقط عند اختيارك ذلك أو تفعيل الخلفية اليومية، والإشعارات لإظهار تقدّم قص الفيديو وجمعه بعد خروجك من التطبيق، والميكروفون عبر خدمة الكلام في هاتفك فقط عند الضغط على زر الميكروفون.</p>
 <p>التطبيق غير موجّه للأطفال دون 13 سنة. كل المحتوى ملك لأصحابه، والتنزيل والتعديل متاحان فقط حيث يسمح المصدر.</p>
 </div>
 </body></html>
